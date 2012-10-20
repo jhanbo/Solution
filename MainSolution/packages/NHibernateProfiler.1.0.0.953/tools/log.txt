@@ -1,6 +1,0 @@
-2012-10-18 16:11:26,654 [1] WARN  Rhino.Licensing.AbstractLicenseValidator [(null)] - Could not find license file: C:\Users\BassamH\AppData\Local\NHibernate Profiler\license.xml
-2012-10-18 16:11:49,151 [1] ERROR HibernatingRhinos.Profiler.Client.Model.LicenseTrialRegistrationPresenter [(null)] - Could not start trial 
-System.Net.WebException: The remote server returned an error: (407) Proxy Authentication Required.
-   at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
-   at System.Net.WebClient.GetWebResponse(WebRequest request, IAsyncResult result)
-   at System.Net.WebClient.DownloadBitsResponseCallback(IAsyncResult result)
