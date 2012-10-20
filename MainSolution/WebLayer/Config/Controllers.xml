@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+	<object type="ITGateWorkDesk.Web.Mvc.Controllers.HomeController, ITGateWorkDesk.Web.Mvc" singleton="false" name="homeController">
+		<property name="CorrespondenceService" ref="_correspondenceService" />
+		<property name="AssignmentService" ref="_assignmentService"/>
+	</object>
+
+	<object type="ITGateWorkDesk.Web.Mvc.Controllers.CorrespondenceController, ITGateWorkDesk.Web.Mvc" singleton="false" name="correspondenceController">
+		<property name="Service" ref="_correspondenceService" />
+		<property name="OrgunitService" ref="_orgunitService" />
+		<property name="UserService" ref="_userService" />
+		<property name="CorrespondenceStateService" ref="_correspondenceStateService" />
+		<property name="CorrespondenceAttachmentService" ref="_correspondenceAttachmentService" />
+		<property name="DraftService" ref="_correspondenceDraftService"/>
+		<property name="MembershipProvider" ref="iTGMembershipProvider"/>
+	</object>
+
+	<object type="ITGateWorkDesk.Web.Mvc.Controllers.SystemController, ITGateWorkDesk.Web.Mvc" singleton="false" name="systemController">
+		<property name="Service" ref="_systemSettingService" />
+	</object>
+
+	<object type="ITGateWorkDesk.Web.Mvc.Controllers.RoleController, ITGateWorkDesk.Web.Mvc" singleton="false" name="roleController">
+		<property name="RoleService" ref="_roleService" />
+	</object>
+
+	<object type="ITGateWorkDesk.Web.Mvc.Controllers.PermissionController, ITGateWorkDesk.Web.Mvc" singleton="false" name="permissionController">
+		<property name="PermissionService" ref="_permissionService" />
+		<property name="RoleService" ref="_roleService"/>
+	</object>
+
+	<object type="ITGateWorkDesk.Web.Mvc.Controllers.OrgunitController, ITGateWorkDesk.Web.Mvc" singleton="false" name="orgunitController">
+		<property name="Service" ref="_orgunitService" />
+	</object>
+
+	<object type="ITGateWorkDesk.Web.Mvc.Controllers.CorrespondenceTypeController, ITGateWorkDesk.Web.Mvc" singleton="false" name="correspondenceTypeController">
+		<property name="Service" ref="_correspondenceTypeService" />
+	</object>
+
+	<object type="ITGateWorkDesk.Web.Mvc.Controllers.UserController, ITGateWorkDesk.Web.Mvc" singleton="false" name="userController">
+		<property name="MembershipProvider" ref="iTGMembershipProvider" />
+		<property name="UserService" ref="_userService"/>
+		<property name ="OrgUnitService" ref="_orgUnitService"/>
+
+	</object>
+
+	<object type="ITGateWorkDesk.Web.Mvc.Controllers.AssignmentController, ITGateWorkDesk.Web.Mvc" singleton="false" name="assignmentController">
+		<property name="Service" ref="_assignmentService" />
+		<property name="OrgunitService" ref="_orgunitService" />
+		<property name="UserService" ref="_userService" />
+		<property name="CorrespondenceService" ref="_correspondenceService" />
+	</object>
+
+	<object type="ITGateWorkDesk.Web.Mvc.Controllers.AccountController, ITGateWorkDesk.Web.Mvc" singleton="false" name="accountController">
+		<property name="MembershipService" ref="iTGMembershipProvider" />
+		<property name="FormsService" ref="formsAuthenticationService" />
+	</object>
+
+</objects>

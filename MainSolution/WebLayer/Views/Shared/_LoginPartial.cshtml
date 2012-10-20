@@ -1,0 +1,14 @@
+﻿@using ITGateWorkDesk.Web.Mvc.Helpers
+@if (Request.IsAuthenticated)
+{
+    @ITGateWorkDesk.Resources.Resources.UserName <text>:</text> @User.Identity.Name
+    <br />
+    
+    @ITGateWorkDesk.Resources.Resources.OrgUnit <text>:</text> @Html.GetLogedUserData().OrgunitName
+    <br />
+    @Html.ActionLink(ITGateWorkDesk.Resources.Resources.Logout, "LogOut", "Account")
+}
+else
+{
+        @Html.ActionLink(@ITGateWorkDesk.Resources.Resources.Login, "LogIn", "Account", new { returnUrl = Request.RawUrl }, null)
+}

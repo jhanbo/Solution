@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="ITGateWorkDesk.Data" namespace="ITGateWorkDesk.Data.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="CorrespondenceToOrganization" table="correspondence_to_org" schema="itg_wd" lazy="false">
+    
+    <id name="ID" type="int">
+      <column name="idcorrespondence_to_org" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="increment" />
+    </id>
+
+    <property name="ToCcType" type="String">
+      <column name="to_cc_type" not-null="true" length="2" sql-type="varchar" />
+    </property>
+    
+    <many-to-one name="Correspondence" class="Correspondence">
+      <column name="correspondence_idcorrespondence" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    
+    <many-to-one name="OrganizationUnit" class="OrganizationUnit">
+      <column name="orgunit_idorgunit" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<ITGateWorkDesk.Web.Mvc.Models.OrgunitModel>
+           @using ITGateWorkDesk.Web.Mvc.Helpers
+@{
+    ViewBag.Title = "Index";
+}
+<h2>
+    Index</h2>
+<p>
+    @Html.ActionLink("Create New s", "Create")
+</p>
+ @(Html.TreeView((Model))
+                .EmptyContent("No organizations have been defined yet!")
+                .Children(m => m.Children)
+                .HtmlAttributes(new { id = "tree" })
+                .ChildrenHtmlAttributes(new { @class = "subItem" })
+                
+                .ItemText(m => m.Name)
+                     .ItemTemplate(@<text> <a href="/Orgunit/Edit/@item.ID" id="selectOrgunitLink" >@item.Name</a></text>)
+        )

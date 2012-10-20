@@ -1,0 +1,8 @@
+Correspondence\Create
+	Select parent Correspondence
+
+save as draft
+org unit settings
+
+assignments
+	

@@ -1,0 +1,31 @@
+﻿@using ITGateWorkDesk.Web.Mvc.Models
+@using PagedList
+ @using ITGateWorkDesk.Web.Mvc.Helpers
+@*@model PagedList.IPagedList<ITGateWorkDesk.Web.Mvc.Models.CorrespondenceDetailsModel>*@
+@{
+    ViewBag.Title = "Index";
+}
+@section HeaderSection
+{
+    <script src="../../Scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/jquery-ui-1.8.23.min.js" type="text/javascript"></script>
+    <link href="../../Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/generalscripts.js" type="text/javascript"></script>
+    <link href="../../Content/PagedList.css" rel="stylesheet" type="text/css" />
+}
+
+<h3>@ITGateWorkDesk.Resources.Resources.LatestRelevantCorrs</h3>
+@*@Html.Partial("LatestRelevantCorrespondeces", Model)*@
+@{
+    Html.RenderAction("LatestCorrespondences", "Home", null);
+}
+
+<h3>@ITGateWorkDesk.Resources.Resources.LatestReferralls</h3>
+@{
+    Html.RenderAction("LatestAssignments", "Home", null);
+}
+
+<h3>@ITGateWorkDesk.Resources.Resources.LatestDecisions</h3>
+@{
+    Html.RenderAction("LatestDecesions", "Home", null);
+}

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="ITGateWorkDesk.Data" namespace="ITGateWorkDesk.Data.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="CorrespondenceState" table="correspondence_states" schema="itg_wd" lazy="false">
+
+    <id name="ID" type="int">
+      <column name="idcorrespondence_states" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+
+
+    <property name="Code" type="string">
+      <column name="state_code" not-null="false" sql-type="varchar" />
+    </property>
+
+    <property name="Description" type="string">
+      <column name="state_desc" not-null="false" sql-type="varchar" />
+    </property>
+  </class>
+</hibernate-mapping>

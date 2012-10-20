@@ -1,0 +1,28 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true"
+                   assembly="ITGateWorkDesk.Data" namespace="ITGateWorkDesk.Data.Domain">
+
+  <class name="Permission" lazy="false">
+    <id name="IdPermission">
+      <column name="idpermission" not-null="true" sql-type="int"/>
+      <generator class="native" />
+    </id>
+    <property name="Name" type="String">
+    <column name="name" not-null="false" length="50" sql-type="varchar" />
+    </property>
+    
+    <property name="Code" type="String">
+    <column name="code" not-null="false" length="20" sql-type="varchar" />
+    </property>
+    
+    <property name="Description"  type="String" >
+    <column name="description" not-null="false" length="255" sql-type="varchar" />
+    </property>
+
+    <!--Role Not Null Vulue has been changed to false-->
+    <many-to-one name="Role" class="Role">
+      <column name="role_idrole" not-null="false" sql-type="INTEGER" />
+    </many-to-one>
+    
+  </class>
+
+</hibernate-mapping>

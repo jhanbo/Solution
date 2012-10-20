@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="ITGateWorkDesk.Data" namespace="ITGateWorkDesk.Data.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="AssignmentAttachment" table="assignment_attachment" schema="itg_wd" lazy="false">
+    <id name="AssignmentAttachmentId" type="int">
+      <column name="idattachment" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    
+    <property name="Name" type="String">
+      <column name="name" not-null="true" length="50" sql-type="varchar" />
+    </property>
+    
+    <property name="Description" type="String">
+      <column name="description" not-null="false" length="255" sql-type="varchar" />
+    </property>
+    
+    <property name="CreatedDate" type="DateTime">
+      <column name="created_date" not-null="false" sql-type="datetime" />
+    </property>
+    
+    <property name="DataFile" type="BinaryBlob">
+      <column name="data_file" not-null="false" length="65535" sql-type="blob" />
+    </property>
+    
+    <many-to-one name="Assignment" class="Assignment">
+      <column name="assignment_idassignment" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    
+  </class>
+</hibernate-mapping>

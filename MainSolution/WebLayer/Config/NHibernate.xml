@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net" xmlns:db="http://www.springframework.net/database">
+
+  <db:provider id="dbProvider" provider="MySql-6.2.2" connectionString="Server=localhost;Port=3306;Database=itg_wd;Uid=root;Pwd=root;"/>
+
+  <!-- DB configuration -->
+  <object id="sessionFactory" type="Spring.Data.NHibernate.LocalSessionFactoryObject, Spring.Data.NHibernate32">
+    <property name="HibernateProperties">
+      <dictionary>
+        <entry key="connection.provider" value="NHibernate.Connection.DriverConnectionProvider"/>
+        <entry key="connection.driver_class" value="NHibernate.Driver.MySqlDataDriver"/>
+        <entry key="show_sql" value="true"/>
+        <entry key="dialect" value="NHibernate.Dialect.MySQLDialect"/>
+      </dictionary>
+    </property>
+    <property name="DbProvider" ref="dbProvider"/>
+    <property name="MappingAssemblies">
+      <list>
+        <value>ITGateWorkDesk.Data</value>
+      </list>
+    </property>
+    <property name="ExposeTransactionAwareSessionFactory" value="true"/>
+  </object>
+  <object id="transactionManager" type="Spring.Data.NHibernate.HibernateTransactionManager, Spring.Data.NHibernate32">
+    <property name="DbProvider" ref="dbProvider"/>
+    <property name="sessionFactory" ref="sessionFactory"/>
+  </object>
+
+	<!--<object id="_nHibernateMembershipProvider" type="ITGateWorkDesk.Web.Mvc.Membership.NHibernateMembershipProvider, ITGateWorkDesk.Web.Mvc">
+		<property name="UserService" ref="_userService"/>
+	</object>-->
+
+</objects>

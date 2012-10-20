@@ -1,0 +1,48 @@
+﻿@model ITGateWorkDesk.Web.Mvc.Models.CorrespondenceFilterModel
+
+@{
+    ViewBag.Title = "List";
+    ViewBag.PageHeader = ViewBag.PageTitle;
+}
+@section HeaderSection{
+    <script src="../../Scripts/jquery-ui-1.8.23.min.js" type="text/javascript"></script>
+    <link href="../../Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+}
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    @Html.ActionLink(ITGateWorkDesk.Resources.Resources.CorrespondeceCreateViewTitle, "Create", new { external = Request["external"], incoming = Request["incoming"] })
+    <fieldset>
+        <legend>@ITGateWorkDesk.Resources.Resources.Search</legend>
+        <table>
+            <tr>
+                <td>@Html.LabelFor(model => model.To)</td>
+                <td>@Html.LabelFor(model => model.FromDate)</td>
+                <td>@Html.LabelFor(model => model.ToDate)</td>
+                <td>@Html.LabelFor(model => model.State)</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DropDownListFor(model => model.To, new SelectList(new[]
+                                                                                    {
+                                                                                        new {ID = "1", Name = "Me"},
+                                                                                        new {ID = "2", Name = "Orgunit"},
+                                                                                        new {ID = "3", Name = "Company"},
+                                                                                    },
+                                                                                "ID", "Name", 2))
+                </td>
+                <td>@Html.TextBoxFor(model => model.FromDate, new { @class = "datefield" })</td>
+                <td>@Html.TextBoxFor(model => model.ToDate, new { @class = "datefield" })</td>
+                <td>@Html.DropDownListFor(model => model.State, ViewBag.StatesList as IEnumerable<SelectListItem>)</td>
+                <td><input type="submit" value="@ITGateWorkDesk.Resources.Resources.Search" /></td>
+            </tr>
+        </table>
+      
+      @if(IsPost)
+      {
+       @Html.Partial("ListPartial", (IEnumerable<ITGateWorkDesk.Web.Mvc.Models.CorrespondenceDetailsModel>)ViewBag.CorrList)   
+      }
+        <p>
+        </p>
+    </fieldset>
+}
+

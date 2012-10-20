@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true"
+                   assembly="ITGateWorkDesk.Data" namespace="ITGateWorkDesk.Data.Domain">
+
+  <class name="User" lazy="false" table="itg_user">
+    <id name="IditgUser">
+      <column name="iditg_user" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="UserName"  type="String" >
+      <column name="username" not-null="false" length="45" sql-type="varchar" />
+    </property>
+
+    <property name="Pass"  type="String">
+      <column name="pass" not-null="false" length="255" sql-type="varchar" />
+    </property>
+
+    <property name="FirstName"   type="String">
+      <column name="first_name" not-null="false" length="45" sql-type="varchar" />
+    </property>
+
+    <property name="MiddleName"   type="String" >
+      <column name="middle_name" not-null="false" length="45" sql-type="varchar" />
+    </property>
+
+
+    <property name="GfName"   type="String">
+      <column name="gf_name" not-null="false" length="45" sql-type="varchar" />
+    </property>
+
+    <property name="LastName"  type="String">
+      <column name="last_name" not-null="false" length="45" sql-type="varchar" />
+    </property>
+
+    <property name="Phone"  type="String">
+      <column name="phone" not-null="false" length="45" sql-type="varchar" />
+    </property>
+
+    <property name="Mobile"  type="String">
+      <column name="mobile" not-null="false" length="45" sql-type="varchar" />
+    </property>
+
+    <property name="Email"  type="String">
+      <column name="email" not-null="false" length="45" sql-type="varchar" />
+    </property>
+
+    <property name="BirthDate"  type="DateTime">
+      <column name="birth_date" not-null="false"  sql-type="Date" />
+    </property>
+
+    <property name="JoinDate"  type="DateTime">
+      <column name="join_date" not-null="false"  sql-type="Date" />
+    </property>
+
+    <property name="Notes"  type="String">
+      <column name="notes" not-null="false" length="255" sql-type="varchar" />
+    </property>
+
+
+    <bag name="UserRoleOrgs" inverse="true" generic="true" lazy="false">
+      <key>
+        <column name="itg_user_iditg_user" />
+      </key>
+      <one-to-many class="UserRolesOrg" />
+    </bag>
+
+    <bag name="Assignments" inverse="true" generic="true" lazy="false">
+      <key>
+        <column name="itg_user_iditg_user" />
+      </key>
+      <one-to-many class="Assignment" />
+    </bag>
+
+    <bag name="CorrTrails" inverse="true" generic="true" lazy="false">
+      <key>
+        <column name="itg_user_iditg_user" />
+      </key>
+      <one-to-many class="CorrespondenceTrail" />
+    </bag>
+
+    <bag name="Correspondences" inverse="true" generic="true" lazy="false">
+      <key>
+        <column name="itg_user_iditg_user" />
+      </key>
+      <one-to-many class="Correspondence" />
+    </bag>
+
+
+    <many-to-one name="Orgunit" class="OrganizationUnit">
+      <column name="orgunit_idorgunit" not-null="false" sql-type="INTEGER" />
+    </many-to-one>
+
+  </class>
+
+</hibernate-mapping>

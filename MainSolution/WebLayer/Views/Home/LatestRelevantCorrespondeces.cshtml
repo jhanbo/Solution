@@ -1,0 +1,57 @@
+﻿@using ITGateWorkDesk.Web.Mvc.Helpers
+@using PagedList.Mvc
+@model PagedList.IPagedList<ITGateWorkDesk.Web.Mvc.Models.CorrespondenceDetailsModel>
+@if (Model != null)
+{
+    <div class="grid">
+        <table class="datatable">
+            <tr>
+                <th>
+                    @ITGateWorkDesk.Resources.Resources.CorresondenceNo
+                </th>
+                <th>
+                    @ITGateWorkDesk.Resources.Resources.CorresondenceType
+                </th>
+                <th>
+                    @ITGateWorkDesk.Resources.Resources.CorresondenceDate
+                </th>
+                <th>
+                    @ITGateWorkDesk.Resources.Resources.IncomingFrom
+                </th>
+                <th>
+                    @ITGateWorkDesk.Resources.Resources.IncomingTo
+                </th>
+                @*<th></th>*@
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr class="row">
+                    <td>
+                        @Html.ActionLink(@item.CorrespondenceID.ToString(), "Details", "Correspondence", new { id = item.CorrespondenceID }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CorrespondenceType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CorrDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FromOrg)
+                    </td>
+                    <td>
+                        @string.Join("<br />", item.ToOrgs.ToArray())
+                    </td>
+                </tr>
+            }
+        </table>
+        <div class="pager">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), Html.CustomPagedListRenderOptions())   
+            
+        </div>
+    </div>
+}
+else
+{
+    <p>
+        No</p>
+}

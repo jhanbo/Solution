@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ITGateWorkDesk.Web.Mvc.Models.CorrespondenceDetailsModel>
+@if (Model == null)
+{
+    <text>No Decisions</text>
+}
+else
+{
+    <table>
+        <tr>
+            <th>
+                @ITGateWorkDesk.Resources.Resources.CorresondenceNo
+            </th>
+            <th>
+                @ITGateWorkDesk.Resources.Resources.CorresondenceType
+            </th>
+            <th>
+                @ITGateWorkDesk.Resources.Resources.CorresondenceDate
+            </th>
+            <th>
+                @ITGateWorkDesk.Resources.Resources.IncomingFrom
+            </th>
+            <th>
+                @ITGateWorkDesk.Resources.Resources.IncomingTo
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(@item.CorrespondenceID.ToString(), "Details", "Correspondence", new { id = item.CorrespondenceID }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CorrespondenceType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CorrDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FromOrg)
+                </td>
+                <td>
+                </td>
+            
+            </tr>
+        }
+    </table>
+}

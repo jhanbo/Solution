@@ -1,0 +1,82 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" auto-import="true"
+                   assembly="ITGateWorkDesk.Data" namespace="ITGateWorkDesk.Data.Domain">
+
+  <class name="OrganizationUnit" lazy="false" table="orgunit" schema="itg_wd">
+    <id name="IdOrgUnit">
+      <column name="idorgunit" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+
+    <property name="Name"  type="String">
+      <column name="name" not-null="false" length="75" sql-type="varchar" />
+    </property>
+
+    <property name="Code"  type="String" >
+      <column name="code" not-null="false" length="15" sql-type="varchar" />
+    </property>
+
+    <property name="OrganizationType"  type="int" >
+      <column name="org_type" not-null="false" length="255" sql-type="integer" />
+    </property>
+
+    <property name="Phone" type="String">
+      <column name="phone" not-null="false" length="45" sql-type="varchar" />
+    </property>
+    <property name="Email"  type="String" >
+      <column name="email" not-null="false" length="45" sql-type="varchar" />
+    </property>
+    <property name="Fax"   type="String">
+      <column name="fax" not-null="false" length="45" sql-type="varchar" />
+    </property>
+
+    <property name="Notes" type="String">
+      <column name="notes" not-null="false" length="255" sql-type="varchar" />
+    </property>
+
+    <many-to-one name="Parent" class="OrganizationUnit" column="orgunit_idorgunit" />
+
+    <bag name="UserRoleOrgs" inverse="true" generic="true" lazy="false">
+      <key>
+        <column name="orgunit_idorgunit" />
+      </key>
+      <one-to-many class="UserRolesOrg" />
+    </bag>
+
+    <bag name="Users" inverse="true" generic="true">
+      <key>
+        <column name="itg_user_iditg_user" />
+      </key>
+      <one-to-many class="User" />
+    </bag>
+
+    <bag name="OrgUnits" inverse="true" generic="true" lazy="false">
+      <key>
+        <column name="orgunit_idorgunit" />
+      </key>
+      <one-to-many class="OrganizationUnit" />
+    </bag>
+
+    <bag name="Settings" inverse="true" generic="true">
+      <key>
+        <column name="orgunit_idorgunit" />
+      </key>
+      <one-to-many class="OrganizationUnitSettings" />
+    </bag>
+
+    <bag name="Correspondences" inverse="true" generic="true" lazy="false">
+      <key>
+        <column name="orgunit_idorgunit" />
+      </key>
+      <one-to-many class="Correspondence" />
+    </bag>
+
+    <bag name="CorrespondenceToOrgs" inverse="true" generic="true" lazy="false">
+      <key>
+        <column name="orgunit_idorgunit" />
+      </key>
+      <one-to-many class="CorrespondenceToOrganization" />
+    </bag>
+
+  </class>
+
+</hibernate-mapping>

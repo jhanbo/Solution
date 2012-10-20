@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ITGateWorkDesk.Web.Mvc.Models.OrgunitModel>
+@using ITGateWorkDesk.Web.Mvc.Helpers
+@using ITGateWorkDesk.Web.Mvc.Models
+<div id='@ViewData["dialogID"]' title="Select Organization" style="display: none;">
+    <p>
+        @(Html.TreeView(((IEnumerable<ITGateWorkDesk.Web.Mvc.Models.OrgunitModel>)ViewBag.Orgunits))
+                .EmptyContent("No organizations have been defined yet!")
+                .Children(m => m.Children)
+                .HtmlAttributes(new { id = "tree" })
+                .ChildrenHtmlAttributes(new { @class = "subItem" })
+                .ItemText(m => m.Name)
+                .ItemTemplate(@<text> <a href="#@item.ID" id="selectOrgunitLink" onclick="selectingOrgunit('@item.ID','@item.Name','@Html.Encode(ViewData["toUpdateField"].ToString())','@ViewData["dialogID"]',true,'@ViewData["allowMultipleSelection"]');">@item.Name</a></text>)
+        )
+    </p>
+</div>

@@ -1,0 +1,42 @@
+﻿@model ITGateWorkDesk.Web.Mvc.Models.AddRoleModel
+
+@{
+    ViewBag.Title = "addRole";
+}
+
+<h2>Add Role</h2>
+@{
+    Html.BeginForm();
+}
+<fieldset>
+<div>
+ @Html.LabelFor(m => m.Name)
+ </div>
+ 
+ <div>
+ @Html.TextBoxFor(m => m.Name)
+ </div>
+ <div>
+ @Html.ValidationMessageFor(m => m.Name)
+ </div>
+
+ <div>
+ @Html.LabelFor(m => m.Description)
+ </div>
+
+ <div>
+ @Html.TextAreaFor(m => m.Description)
+
+ </div>
+ <div>
+ @Html.ValidationMessageFor(m => m.Description)
+ </div>
+
+ <div>
+ <input type="submit" value="add" />
+ </div>
+</fieldset>
+
+   
+       
+

@@ -1,0 +1,29 @@
+﻿@model ITGateWorkDesk.Web.Mvc.Models.addRoleModel
+
+@{
+    ViewBag.Title = "addRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>addRole</h2>
+
+    @{Html.BeginForm();}
+    <fieldset>
+    <div>
+    @Html.ValidationSummary(true, " Please correct the errors and try again.")
+    @Html.LabelFor(m => m.Name)
+    @Html.TextBoxFor(m => m.Name)
+    @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <div>
+    @Html.LabelFor(m => m.Description)
+    @Html.TextBoxFor(m => m.Description)
+    @Html.ValidationMessageFor(m => m.Description)
+    </div>
+
+    <div>
+    <input type="submit" value="add" />
+    </div>
+    </fieldset>
+

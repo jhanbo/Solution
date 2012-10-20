@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ITGateWorkDesk.Data.Domain.Permission>
+
+@{
+    ViewBag.Title = "Permissions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Permissions</h2>
+
+<p>
+    @Html.ActionLink("Create New PErmission", "Create")
+</p>
+<table>
+    <tr>
+        
+        <th>
+            Name
+        </th>
+        <th>
+            Code
+        </th>
+        <th>
+            Description
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var permission in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => permission.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => permission.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => permission.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = permission.IdPermission }) |
+            @Html.ActionLink("Delete", "Delete", new { id = permission.IdPermission }, new { onclick = "return confirm('Are you sure you want to delete " + permission.Name+ " Permission ?')" })
+        </td>
+    </tr>
+}
+
+</table>

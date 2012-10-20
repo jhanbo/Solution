@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="ITGateWorkDesk.Data" namespace="ITGateWorkDesk.Data.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Correspondence" table="correspondence" schema="itg_wd" lazy="false">
+
+    <id name="CorrespondenceId" type="int">
+      <column name="idcorrespondence" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="increment" />
+    </id>
+
+    <property name="RecordNo" type="String">
+      <column name="record_no" not-null="false" length="45" sql-type="varchar" />
+    </property>
+
+    <property name="Devision" type="String">
+      <column name="devision" not-null="false" length="10" sql-type="varchar" />
+    </property>
+
+    <property name="CreatedDate" type="DateTime">
+      <column name="created_date" not-null="false" sql-type="datetime" />
+    </property>
+
+    <property name="RequireFollowup" type="int">
+      <column name="require_followup" not-null="false" precision="10" scale="0" sql-type="int" />
+    </property>
+
+    <property name="Importance" type="int">
+      <column name="importance" not-null="false" precision="10" scale="0" sql-type="int" />
+    </property>
+
+    <property name="Title" type="String">
+      <column name="title" not-null="false" length="100" sql-type="varchar" />
+    </property>
+
+    <property name="PersonName" type="String">
+      <column name="person_name" not-null="false" length="50" sql-type="varchar" />
+    </property>
+
+    <property name="IsSecret" type="int">
+      <column name="is_secret" not-null="false" precision="10" scale="0" sql-type="int" />
+    </property>
+
+    <property name="IsInternal" type="int">
+      <column name="is_internal" not-null="false" precision="10" scale="0" sql-type="int" />
+    </property>
+
+
+    <property name="LatestChangeUser" type="String">
+      <column name="latest_change_user" not-null="false" length="50" sql-type="varchar" />
+    </property>
+
+    <property name="LatestChangeDate" type="DateTime">
+      <column name="latest_change_date" not-null="false" sql-type="datetime" />
+    </property>
+
+    <property name="RecordDate" type="DateTime">
+      <column name="record_Date" not-null="false" sql-type="datetime" />
+    </property>
+
+    <property name="DeliveryMethod" type="String">
+      <column name="delivery_meothd" not-null="false" sql-type="varchar" />
+    </property>
+
+    <property name="AttachementsCount" type="int">
+      <column name="attachments_count" not-null="false" sql-type="int" />
+    </property>
+
+	  <property name="IsDecision" type="int">
+		  <column name="is_decision" sql-type="int" scale="0" precision="1" not-null="true"/>
+	  </property>
+    <many-to-one name="State" class="CorrespondenceState">
+      <column name="state" not-null="true" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="CorrespondeceType" class="CorrespondenceType">
+      <column name="corr_type" not-null="true" sql-type="int" />
+    </many-to-one>
+
+    <many-to-one name="Parent" class="Correspondence">
+      <column name="correspondence_idcorrespondence" not-null="false" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+
+    <many-to-one name="User" class="User">
+      <column name="itg_user_iditg_user" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+
+    <many-to-one name="Orgunit" class="OrganizationUnit">
+      <column name="orgunit_idorgunit" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+
+    <bag name="Assignments" lazy="false" >
+      <key>
+        <column name="correspondence_idcorrespondence" />
+      </key>
+      <one-to-many class="Assignment" />
+    </bag>
+
+    <bag name="CorrAttachments" lazy="false" inverse="true">
+      <key>
+        <column name="correspondence_idcorrespondence" />
+      </key>
+      <one-to-many class="CorrespondenceAttachment" />
+    </bag>
+
+    <bag name="CorrTrails" lazy="false">
+      <key>
+        <column name="correspondence_idcorrespondence" />
+      </key>
+      <one-to-many class="CorrespondenceTrail" />
+    </bag>
+
+    <bag name="Childs" lazy="false">
+      <key>
+        <column name="correspondence_idcorrespondence" />
+      </key>
+      <one-to-many class="Correspondence" />
+    </bag>
+
+    <bag name="CorrespondenceToOrgs" lazy="false" inverse="true"   >
+      <key>
+        <column name="correspondence_idcorrespondence" />
+      </key>
+      <one-to-many class="CorrespondenceToOrganization" />
+    </bag>
+
+
+    <bag name="Notes" lazy="false" >
+      <key>
+        <column name="correspondence_idcorrespondence" />
+      </key>
+      <one-to-many class="CorrespondenceNote" />
+    </bag>
+
+  </class>
+</hibernate-mapping>
